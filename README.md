@@ -6,7 +6,7 @@ During the development of the wind turbine predictive maintenance model, we enco
 
 ### 📊 Simulink Scopes Output
 
-![Simulation Scopes Overview](scopes.png)
+![Simulation Scopes Overview](scopes.jpg)
 
 ---
 
