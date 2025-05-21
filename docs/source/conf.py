@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Windturbin'
+project = 'Windturbine'
 copyright = '2025, hachim'
 author = 'hachim'
 release = 'today'
@@ -15,8 +15,8 @@ release = 'today'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon'  
+    'myst_parser',  # Enables Markdown support
+    # Add other extensions if needed
 ]
 
 source_suffix = {
