@@ -1,85 +1,74 @@
-🌬 Wind Turbine Generator Predictive Maintenance Model
-======================================================
+Wind Turbine Generator Predictive Maintenance Model
+===================================================
 
-🔧 Development Progress & Observed Failures
--------------------------------------------
+Overview
+--------
 
-During the development of the wind turbine predictive maintenance model, we encountered multiple issues and behaviors that helped us refine the system step by step. The following scopes visualize the simulation outputs at different stages, highlighting failures and diagnostic insights.
+This documentation presents a predictive maintenance model developed for a wind turbine generator using MATLAB/Simulink. It includes system behavior analysis, observed simulation anomalies, and the engineering solutions applied during development. The scope visuals and diagnostics offer insight into the model's evolution and performance improvements.
 
-📊 Simulink Scopes Output
--------------------------
+Development Progress & Diagnostics
+----------------------------------
+
+The following sections describe the key simulation outputs, observed issues, and corrective measures applied:
+
+Simulink Scopes Output
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: scopes.png
    :alt: Simulation Scopes Overview
+   :align: center
+   :width: 600px
 
----
+Rotor Speed Panel
+^^^^^^^^^^^^^^^^^
 
-🌀 Rotor Speed Panel
---------------------
+- **Observation:** Rotor speed fluctuated slightly around ~1400 RPM.
+- **Interpretation:** Speed control was mostly stable, though minor noise was observed.
+- **Fix:** Actuator gain was fine-tuned and the speed signal properly scaled (rad/s to pu).
 
-- *Observation:* Rotor speed fluctuated slightly around a constant nominal value (~1400 rpm).
-- *Interpretation:* Speed feedback and actuator control loops were stable, but minor noise was present.
-- *Fix Applied:* Fine-tuned the actuator gain and ensured correct scaling from rad/s to pu.
+Electromagnetic Torque (Te)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
----
+- **Observation:** Torque signal showed sudden drops and rises.
+- **Issue:** Mismatch between actuator dynamics and generator response.
+- **Fix:** Added damping through the `Actuator Dynamics` block for smoother torque transitions.
 
-⚡ Electromagnetic Torque (Te)
-------------------------------
+Degradation Growth
+^^^^^^^^^^^^^^^^^^
 
-- *Observation:* Torque signal exhibited abrupt drops and rises during some simulation phases.
-- *Issue:* Caused by mismatch between torque actuator dynamics and generator response.
-- *Fix:* We introduced damping via the `Actuator Dynamics` block to smooth out the torque input.
+- **Observation:** Gradual increase in degradation over time.
+- **Result:** Validates the degradation model based on torque, vibration, and environmental input.
+- **Usage:** These values are used for health estimation and predictive maintenance.
 
----
+Gearbox Output (Unexpected Behavior)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-🛠 Degradation Growth
-----------------------
+- **Observation:** Flatline at zero — no expected torque transmission.
+- **Issue:** Incorrect signal connection between torque input and gearbox.
+- **Fix:** Rerouted torque path and reconnected the gearbox output.
 
-- *Observation:* Steady increase in degradation values over time.
-- *Success:* This validated the effectiveness of our degradation model based on torque, vibration, and environmental data.
-- *Usage:* These values feed into the predictive maintenance model to estimate component health.
+Vibration RMS & Statistical Metrics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
----
-
-🔁 Gearbox Output (Unexpected Behavior)
----------------------------------------
-
-- *Observation:* Large flatline at zero — no expected gear output.
-- *Issue:* Misconfigured signal connection between torque input and gearbox subsystem.
-- *Action Taken:* Rewired the gearbox output and rerouted torque after confirming dynamic consistency.
-
----
-
-📈 Vibration RMS & Statistical Metrics
---------------------------------------
-
-- *Observation:* Vibration RMS and kurtosis showed sporadic spikes.
-- *Insight:* These spikes were simulated fault injections or reflect instability from misaligned rotor/generator coupling.
-- *Response:* Implemented `generator_vibration_sensor` to capture these characteristics and improve feature extraction for fault classification.
-
----
-
-✅ Final Note
-------------
-
-Each anomaly helped us uncover a modeling or signal routing flaw. By resolving them, the model evolved into a more accurate and reliable predictive maintenance simulator.
+- **Observation:** Sporadic spikes in vibration RMS and kurtosis.
+- **Insight:** Likely caused by injected faults or rotor/generator misalignment.
+- **Response:** Introduced `generator_vibration_sensor` to extract meaningful fault features.
 
 .. note::
-   All scope signals shown above are time-based samples with simulation time T=100000.
 
-📈 Potential Improvements
--------------------------
+   All signals shown above represent time-based samples with a simulation period of T = 100000.
 
-- Add fault injection models for gearbox and blade damage
-- Integrate ML models for remaining useful life (RUL) estimation
-- Improve cycle factor calculation based on actual turbine usage data
-- Include real weather input from `.mat` or `.csv` datasets
+Potential Improvements
+----------------------
 
----
+- Implement fault injection for gearbox and blade degradation
+- Integrate machine learning models for RUL (Remaining Useful Life) estimation
+- Enhance cycle factor metrics based on real turbine usage
+- Add weather input via `.mat` or `.csv` datasets
 
-📜 License & Credits
---------------------
+License & Credits
+-----------------
 
-- Model © 2009–2020 The MathWorks, Inc.
-- Extended and modified by Hachim & Abdellah
-- For academic use only.
+- Base model © 2009–2020 The MathWorks, Inc.
+- Extensions and modifications by Hachim & Abdellah
+- **Academic use only**
