@@ -14,7 +14,7 @@ The following sections describe the key simulation outputs, observed issues, and
 Simulink Scopes Output
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: scopes.png
+.. image:: scopes.jpg
    :alt: Simulation Scopes Overview
    :align: center
    :width: 600px
