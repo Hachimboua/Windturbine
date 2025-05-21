@@ -1,0 +1,23 @@
+# .readthedocs.yml
+
+version: 2
+
+# Python version and build tools
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.10"
+
+# Documentation configuration
+sphinx:
+  configuration: docs/conf.py
+
+# Requirements to install before building
+python:
+  install:
+    - requirements: requirements.txt
+
+# Optional: Build command (Sphinx does this by default, but you can customize)
+# build:
+#   commands:
+#     - sphinx-build -b html docs/ _build/html
